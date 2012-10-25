@@ -1,0 +1,20 @@
+<html>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <h1> Create a cache </h1>
+  {{ form }}
+
+<script>
+function getLocation() {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  else{x.innerHTML="Geolocation is not supported by this browser.";}
+}
+
+function fillInPosition(position) {
+x.innerHTML="Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;	
+}
+</script>
+</html>
