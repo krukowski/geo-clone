@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block header %}
+<script type="text/javascript">
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        $("#lat").val(position.coords.latitude); 
+        $("#long").val(position.coords.longitude);	
+      });
+    }
+  }
+
+  function displayCaches(caches) {
+    var list = $("#cache-list");
+    list.empty()
+    if (caches.length == 0) {
+      $("#cache-list").html("No caches found.");
+    } else {
+      $.each($(caches), function(index, value) {
+        var cache_entry = $(document.createElement("li"));
+        html = "<a href=\"/cache/" + value.pk + "\">";
+        html += value.name;
+        html += "</a>  by " + value.user;
+        html += " ("+value.size+")";
+        html += " at ("+value.lat+", "+value.long+")";
+        cache_entry.html(html);
+        list.append(cache_entry);
+      });
+    }
+  }
+
+  function updateList() {
+    var data = {}
+    var radius = $("#radius").val();
+    if (radius) {
+      data["radius"] = radius;
+      data["lat"] = $("#lat").val();
+      data["long"] = $("#long").val();
+    }
+  
+    $.each($(":checkbox"), function(index, value) {
+      value = $(value);
+      if (value.prop("checked")) {
+        data[value.val()] = true;
+      }
+    });
+  
+    $.ajax({
+      url:"/cache_ajax",
+      dataType:"json",
+      data:data,
+      success: function(data) {
+        displayCaches(data.caches);
+      }
+    });
+  }
+  
+  window.onload = function() {
+    $("#set-loc").click(getLocation);
+    $("#refresh").click(updateList);
+    getLocation();
+    updateList();
+  };
+</script>
+{% endblock %}
+
+{% block content %}
+
+  <h1>Filter caches </h1>
+  By location: Within <input type="text" id="radius" value="10000" /> miles of (lat, long)
+  <input type="text" id="lat" value="0" />, <input type="text" id="long" value="0" />. <br />
+  <input id="set-loc" type="submit" value="Use current location" /> <br>
+  <br> By size:  &nbsp;&nbsp;
+  Small <input id="small" type="checkbox" name="small" value="small" checked> &nbsp;&nbsp;
+  Medium <input id="medium" type="checkbox" name="medium" value="medium" checked> &nbsp;&nbsp;
+  Large <input id="large" type="checkbox" name="large" value="large" checked> &nbsp;&nbsp;
+  <br /> <br /> <input id="refresh" type="submit" value="Refresh" />
+  <br /> <br />
+  <ul id="cache-list"> No caches. </ul> 
+{% endblock %}

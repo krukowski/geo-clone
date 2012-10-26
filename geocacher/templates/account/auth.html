@@ -1,9 +1,7 @@
-<html>
-<head>
-<title>Log in</title>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %} Log in {% endblock %}
+
+{% block content %}
   {{ message }}
   <form action="/login/" method="post">
     {% csrf_token %}
@@ -17,5 +15,4 @@
     
     <input type="submit" value="Log In" />
   </form>
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,72 @@
+#header{
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    min-width:800px;
+    margin:0;
+    padding:20 0 10 0;
+    height:90px;
+    background-color:#EEC;
+    text-align:center;
+}
+
+#userbox {
+    position:absolute;
+    bottom:0px;
+    right:0px;
+    padding:5px 15px;
+}
+
+#title{
+    display:block;
+    font-size:32pt;
+}
+
+form {
+    display:block;
+    text-align:right;
+}
+
+#subtitle {
+    display:block;
+    font-size:16pt;
+}
+
+#navbar{
+    position:absolute;
+    top:120px;
+    left:0px;
+    bottom:0px;
+    width:140px;
+    background-color:#CEC;
+}
+
+#navbar>a {
+    display:block;
+    padding:10px;
+}
+
+#navbar>a:link, #navbar>a:visited {
+    color:#000;
+    text-decoration:none;
+}
+
+#navbar>a:active, #navbar>a:hover {
+    color:#000;
+    text-decoration:underline;
+}
+
+#create-title {
+    text-align: right;
+}
+
+#main-content {
+    position:absolute;
+    top:120px;
+    left:140px;
+    bottom:0px;
+    right:0px;
+    width:600px;
+    margin:auto;
+}

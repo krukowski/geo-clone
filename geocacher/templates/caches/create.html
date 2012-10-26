@@ -1,20 +1,15 @@
-<html>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-  <h1> Create a cache </h1>
-  {{ form }}
+{% extends "base.html" %}
+
+{% block content %}
+  <h1 id="create-title"> Create a cache </h1>
+  <form action="/create" method="post">
+    <p> {{ message }} </p>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p> <input type="submit" /> </p>
+  </form>
 
 <script>
-function getLocation() {
-  if (navigator.geolocation)
-    {
-    navigator.geolocation.getCurrentPosition(showPosition);
-    }
-  else{x.innerHTML="Geolocation is not supported by this browser.";}
-}
 
-function fillInPosition(position) {
-x.innerHTML="Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;	
-}
 </script>
-</html>
+{% endblock %}

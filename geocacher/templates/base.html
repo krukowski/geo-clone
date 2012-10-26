@@ -1,0 +1,33 @@
+<html>
+<header>
+  <title> {% block title %} GeoClone! {% endblock %} </title>
+  <link rel="stylesheet" type="text/css" href="/static/style.css" />
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+  {% block header %} {% endblock %}
+</header>
+
+<body>
+<div id="header">
+  <span id="title"> GeoClone! </span>
+  <span id="subtitle"> For all your geocaching needs </span>
+  <div id="userbox">
+    {% if user.is_authenticated %}
+      Welcome <a href="/user/{{ user.username }}"> {{user.username}} </a>! <a href="/logout"> Logout </a>
+    {% else %}
+      <a href="/login"> Log in </a> or <a href="/register"> register? </a> 
+    {% endif %}
+  </div>
+    
+</div>
+<div id="navbar">
+  
+  <a href="/"> Home </a>
+  <a href="/caches"> Find a Cache </a>
+  <a href="/create"> Make your Own! </a>
+</div>
+<div id="main-content">
+  {% block content %}
+  {% endblock %}
+</div>
+</body>
+</html>

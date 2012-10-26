@@ -18,12 +18,6 @@ class Cache(models.Model):
     description =  models.TextField(null=True, blank=True)
     size =         models.CharField(max_length=6, choices=SIZE_CHOICES)
 
-    def log_visit(self, user, found=True, message=''):
-        log = Log.create(cache=self,
-                         user=user,
-                         found=found,
-                         message=message)
-        log.save
 
 class Log(models.Model):
     cache =   models.ForeignKey(Cache, related_name='logs')

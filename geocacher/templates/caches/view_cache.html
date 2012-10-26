@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1> {{ cache.title }} </h1>
+<p> Created by: <a href="/user/{{cache.created_by}}"> {{cache.created_by }} </a> </p>
+<p> Location: {{ cache.lat }}, {{ cache.lon }} </p>
+<p> Size: {{ cache.size }} </p>
+<p> {{ cache.description }} </p>
+<br>
+
+
+{% endblock %}

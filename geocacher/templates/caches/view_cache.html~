@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1> {{ cache.title }} </h1>
+<p> Location: {{ cache.lat }}, {{ cache.long }} </p>
+<p> Size: {{ cache.size }} </p>
+<p> {{ cache.description }} </p>
+<br>
+<p> Logs </p>
+
+
+{% endblock %}
